@@ -1,0 +1,68 @@
+/* thanks: https://codepen.io/sevilayha/pen/IdGKH */
+.group input {
+	font-size: 14px;
+	color: #8a9098;
+	padding: 10px 10px 10px 5px;
+	display: block;
+	width: 220px;
+	border: none;
+	border-bottom: 1px solid #8a9098;
+	background-color: transparent;
+}
+
+.group input:focus {
+	outline: none;
+}
+
+.group label {
+	color: #8a9098;
+	font-size: 14px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: 0.2s ease all;
+}
+
+/* active state */
+.group input:focus~label,
+.group input:valid~label {
+	top: -10px;
+	font-size: 12px;
+	color: #fff;
+}
+
+/*
+ * BOTTOM BARS
+ */
+ .group .bar {
+	position: relative;
+	display: block;
+	width: 235px;
+}
+
+.group .bar:before,
+.group .bar:after {
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: #fff;
+	transition: 0.2s ease all;
+}
+
+.group .bar:before {
+	left: 50%;
+}
+
+.group .bar:after {
+	right: 50%;
+}
+
+/* active state */
+.group input:focus~.bar:before,
+.group input:focus~.bar:after {
+	width: 50%;
+}

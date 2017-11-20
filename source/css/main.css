@@ -1,0 +1,74 @@
+/* styles are all here, well most of them anyway! */
+/*
+ * palette:
+ * red: #f01111
+ * green: #6aef00
+ * light grey #8a9098 / #a0a0a0
+ * unfortunately, a lot of hard-coded margins, heights...
+ */
+
+body {
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: arial;
+	color: #888;
+	/* hard-coded */
+	height: 100%;
+	width: 100%;
+	font-size: 14px;
+	font-family: Calibri;
+	margin: 0;
+	overflow: hidden;
+}
+
+.blur {
+	background-color: rgba(255, 255, 255, 0.8);
+	height: 100%;
+	width: 100%;
+}
+
+.center-horizontal {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.center-vertical {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.large-text {
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.medium-text {
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.show {
+	opacity: 1;
+	transition: background-color 0.5s, opacity 0.5s;
+}
+
+.hide {
+	opacity: 0;
+	cursor: default;
+	transition: background-color 0.5s, opacity 0.5s;
+}
+
+.apps-button {
+	position: absolute !important;
+	right: 50px;
+	bottom: 20px;
+}
+
+.apps-button p,
+.apps-button img {
+	margin: 5px;
+	margin-bottom: 1px;
+}

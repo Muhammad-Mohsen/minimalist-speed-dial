@@ -62,6 +62,12 @@ var SpeedDialItem = (function () {
 			if (newMode === MODE.VIEW && Validate.name(name) && Validate.url(url)) {
 				setMode(item, newMode, true);
 
+			// remove the item if the item was new and the cancel button was pressed
+			} else if (newMode === MODE.VIEW && (item.oldUrl === undefined || item.oldUrl === '')) {
+				item.slideUp(250, function () {
+					remove();
+				});
+
 			} else if (newMode === MODE.EDIT) {
 				item.oldUrl = getEditModeUrl(item); // set the oldUrl prop. It's used as an ID to update the item
 				setMode(item, newMode, true);

@@ -149,7 +149,7 @@ var SpeedDialItem = (function () {
 
 	function setUrl(item, url) {
 		item.uiElements.emSiteUrl.val(url);
-		item.uiElements.vmSiteUrl.html(url);
+		item.uiElements.vmSiteUrl.html(String.ellipsize(url, Const.MAX_URL_LENGTH));
 	}
 
 	return {

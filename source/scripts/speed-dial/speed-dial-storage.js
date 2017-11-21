@@ -17,12 +17,13 @@ var SpeedDialStorage = (function () {
 		chrome.storage.local.set({ 'list': list });
 	}
 
-	function add(name, url, callback) {
+	function add(name, url, oldUrl, callback) {
 		// update the duplicate if found
 		get(function (list) {
 			for (var i = 0; i < list.length; i++) {
-				if (list[i].url == url) {
+				if (list[i].url == oldUrl) {
 					list[i].name = name;
+					list[i].url = url;
 
 					// Save list to localstorage
 					setList(list);
@@ -47,9 +48,13 @@ var SpeedDialStorage = (function () {
 
 	function remove(url, callback) {
 		get(function (list) {
+			Log.d('url to remove: ' + url);
+
 			// remove site from array
 			for (var i = 0; i < list.length; i++) {
 				if (list[i].url === url) {
+					Log.d('we found it!');
+
 					list.splice(i, 1);
 					break;
 				}

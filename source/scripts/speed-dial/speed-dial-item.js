@@ -6,7 +6,7 @@ var SpeedDialItem = (function () {
 	var MODE = {
 		VIEW: 1,
 		EDIT: 2
-	}
+	};
 
 	// creates a completely functional speed dial item
 	function create(mode, name, url) {
@@ -29,8 +29,7 @@ var SpeedDialItem = (function () {
 			// edit mode
 			emSiteName: item.find('#input-site-name'),
 			emSiteUrl: item.find('#input-site-url'),
-		}
-		x = item;
+		};
 		//
 		// event handlers
 		//
@@ -64,6 +63,7 @@ var SpeedDialItem = (function () {
 				setMode(item, newMode, true);
 
 			} else if (newMode === MODE.EDIT) {
+				item.oldUrl = getEditModeUrl(item); // set the oldUrl prop. It's used as an ID to update the item
 				setMode(item, newMode, true);
 			}
 		});
@@ -75,8 +75,8 @@ var SpeedDialItem = (function () {
 			// trash button
 			if (currentMode === MODE.VIEW) {
 				item.slideUp(250, function () {
+					SpeedDialStorage.removeItem(getEditModeUrl(item));
 					item.remove();
-					SpeedDialStorage.removeItem(getViewModeUrl(item));
 				});
 
 			// accept button
@@ -85,7 +85,8 @@ var SpeedDialItem = (function () {
 				var url = getEditModeUrl(item);
 
 				if (Validate.name(name) && Validate.url(url)) {
-					SpeedDialStorage.addItem(name, url, function () {
+					// the old URL property was set on the item when the edit mode was first entered
+					SpeedDialStorage.addItem(name, url, item.oldUrl, function () {
 						setFavicon(item, url);
 						setName(item, name);
 						setUrl(item, url);

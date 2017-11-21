@@ -43,48 +43,6 @@ var SpeedDial = (function () {
 		// TODO add drag/drop functionality?
 	}
 
-	function addItem() {
-		var siteName = inputSiteName.val();
-		var siteUrl = inputSiteUrl.val();
-
-		if (!Util.isValidUrl(site))
-			return;
-
-		blockedSiteList.add(site, function () {
-			// clear the input text
-			inputBlockSite.val('');
-
-			// push the site to the array
-			blockedSiteArray.push(site);
-			blockedSiteArray.sort();
-			var index = blockedSiteArray.indexOf(site);
-
-			// create the html
-			var item = getBlockedSiteItem(site);
-			item.hide();
-
-			// insert the new element
-			var elem;
-
-			// if the list wasn't empty
-			if (blockedSiteArray.length > 1) {
-				if (index != 0) {
-					elem = ulBlockedSites.find('li:nth-child(' + index + ')'); // (nth-child index is one-based)
-					elem.after(item);
-
-				} else {
-					elem = ulBlockedSites.find('li:nth-child(' + (index + 1) + ')'); // if inserting at the first position (index = 0), get the first child...
-					elem.before(item); // ...and insert the new element before it
-				}
-
-			} else {
-				ulBlockedSites.html(item);
-			}
-
-			item.show('250');
-		});
-	}
-
 	function toggleAddFormVisibility(show) {
 		setTimeout(function () {
 			Util.toggleVisibility(show, uiElements.divSiteName, uiElements.inputSiteName);

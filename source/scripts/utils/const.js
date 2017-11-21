@@ -68,5 +68,5 @@ var Const = {
 	`,
 	MAX_URL_LENGTH: 40,
 	GOOGLE_FAVICON_API: 'http://www.google.com/s2/favicons?domain=',
-	DEBUG: true
-}
+	DEBUG: false // enables/disables extension-wide logging
+};

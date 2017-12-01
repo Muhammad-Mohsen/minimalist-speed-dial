@@ -1,12 +1,12 @@
 // stores application consts, obviously
 //
 var Const = {
-	// {0} maps to URL, {1} maps to name
+	// {0} maps to URL, {1} to name, {2} to ellipsized URL, {3} to faviconUrl
 	speedDialItemTemplate: `
 		<a href="{1}" class="row" draggable="false">
 			<div class="row" view-mode>
 				<div class="column column-1 favicon">
-					<img src="http://www.google.com/s2/favicons?domain={1}" width="18" />
+					<img src="http://www.google.com/s2/favicons?domain={3}" width="18" />
 				</div>
 
 				<div class="column column-9">
@@ -68,5 +68,5 @@ var Const = {
 	`,
 	MAX_URL_LENGTH: 40,
 	GOOGLE_FAVICON_API: 'http://www.google.com/s2/favicons?domain=',
-	DEBUG: false // enables/disables extension-wide logging
+	DEBUG: true // enables/disables extension-wide logging
 };

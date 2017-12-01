@@ -59,7 +59,7 @@ var FssProvider = (function () {
 		start = Date.now();
 		center = FSS.Vector3.create();
 		attractor = FSS.Vector3.create();
-		container = c.get(0);
+		container = c.get(0); // get the DOM element from the $ object
 
 		createRenderer();
 		createScene();

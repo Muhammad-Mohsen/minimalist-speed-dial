@@ -8,18 +8,24 @@ var SpeedDialItem = (function () {
 		EDIT: 2
 	};
 
-	// creates a completely functional speed dial item
-	function create(mode, name, url) {
-
-		// ellipsize the URL if necessary
-		var ellipsizedUrl = String.ellipsize(url, Const.MAX_URL_LENGTH);
-		// load the template
-		var itemInnerHtml = String.format(Const.speedDialItemTemplate, name, url, ellipsizedUrl);
+	// creates a completely functional speed dial item, and as such it's a huge method!
+	function create(mode, dataItem) {
 
 		var item = $('<li>');
+
+		// ellipsize the URL if necessary
+		var ellipsizedUrl = String.ellipsize(dataItem.url, Const.MAX_URL_LENGTH);
+		// if creating a new item (url is empty), use a placeholder url to avoid 404 response when calling the favicon service
+		var faviconUrl = dataItem.url === undefined || dataItem.url === '' ? '1' : dataItem.url;
+
+		// load the template
+		var itemInnerHtml = String.format(Const.speedDialItemTemplate, dataItem.name, dataItem.url, ellipsizedUrl, faviconUrl);
 		item.html(itemInnerHtml);
 
-		// elements
+		// set the ID
+		item.id = dataItem.id;
+
+		// initialize elements
 		item.uiElements = {
 			// view mode
 			vmFavicon: item.find('[view-mode] .favicon img'),
@@ -50,30 +56,31 @@ var SpeedDialItem = (function () {
 			}
 
 		});
-
+		//
+		// secondary button click handler
+		//
 		item.find('[button-secondary]').on('click', function (e) {
 			e.preventDefault();
 			var newMode = getMode(item) === MODE.EDIT ? MODE.VIEW : MODE.EDIT;
 
-			// only move back to VIEW mode if the old values are valid (not empty)
-			// basically, if it's not a new item
 			var name = getViewModeName(item);
 			var url = getViewModeUrl(item);
-			if (newMode === MODE.VIEW && Validate.name(name) && Validate.url(url)) {
-				setMode(item, newMode, true);
 
 			// remove the item if the item was new and the cancel button was pressed
-			} else if (newMode === MODE.VIEW && (item.oldUrl === undefined || item.oldUrl === '')) {
+			if (newMode === MODE.VIEW && (item.id === undefined || item.id === '')) {
 				item.slideUp(250, function () {
-					remove();
+					item.remove();
 				});
 
-			} else if (newMode === MODE.EDIT) {
-				item.oldUrl = getEditModeUrl(item); // set the oldUrl prop. It's used as an ID to update the item
+			// go to EDIT mode if the edit item was pressed
+			// or to VIEW mode if the cancel button was pressed and it's not a new item
+			} else {
 				setMode(item, newMode, true);
 			}
 		});
-
+		//
+		// primary button click handler
+		//
 		item.find('[button-primary]').on('click', function (e) {
 			e.preventDefault();
 			var currentMode = getMode(item);
@@ -81,26 +88,40 @@ var SpeedDialItem = (function () {
 			// trash button
 			if (currentMode === MODE.VIEW) {
 				item.slideUp(250, function () {
-					SpeedDialStorage.removeItem(getEditModeUrl(item));
+					SpeedDialStorage.removeItem(item.id);
 					item.remove();
 				});
 
 			// accept button
 			} else {
+				// get the values
 				var name = getEditModeName(item);
 				var url = getEditModeUrl(item);
 
-				if (Validate.name(name) && Validate.url(url)) {
-					// the old URL property was set on the item when the edit mode was first entered
-					SpeedDialStorage.addItem(name, url, item.oldUrl, function () {
+				// validate them
+				var isValidName = Validate.name(name);
+				var isValidUrl = Validate.url(url);
+				if (isValidName && isValidUrl) {
+					SpeedDialStorage.addItem(name, url, item.id, function (id) {
 						setFavicon(item, url);
 						setName(item, name);
 						setUrl(item, url);
 
+						item.id = id; // set the item ID
+						item.find('a').attr('href', url);
+
 						setMode(item, MODE.VIEW, true);
 					});
+
+				} else { // if invalid, show invalid UI
+					updateValidationUi(item, isValidName, isValidUrl);
 				}
 			}
+		});
+
+		// edit mode input changed handler (works on both Name, and URL input fields)
+		item.find('.group input').on('input', function (e) {
+			updateElementValidationUi($(e.currentTarget), true);
 		});
 
 		// set the display mode
@@ -157,6 +178,22 @@ var SpeedDialItem = (function () {
 	function setUrl(item, url) {
 		item.uiElements.emSiteUrl.val(url);
 		item.uiElements.vmSiteUrl.html(String.ellipsize(url, Const.MAX_URL_LENGTH));
+	}
+
+	// helper method that updates the input boxes' labels depending on their valid state
+	function updateValidationUi(item, isValidName, isValidUrl) {
+		var inputLabels = item.find('.group input');
+
+		updateElementValidationUi(inputLabels.eq(0), isValidName);
+		updateElementValidationUi(inputLabels.eq(1), isValidUrl);
+	}
+
+	function updateElementValidationUi(element, isValid) {
+		if (isValid) {
+			element.removeClass('invalid');
+		} else {
+			element.addClass('invalid')
+		}
 	}
 
 	return {

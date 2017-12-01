@@ -8,6 +8,7 @@
 	border: none;
 	border-bottom: 1px solid #8a9098;
 	background-color: transparent;
+	transition: 0.2s ease all;
 }
 
 .group input:focus {
@@ -51,6 +52,13 @@
 	position: absolute;
 	background: #fff;
 	transition: 0.2s ease all;
+}
+
+/* invalid input */
+.group input.invalid~label,
+.group input.invalid:focus~label,
+.group input.invalid:valid~label {
+	color: #d30000;
 }
 
 .group .bar:before {

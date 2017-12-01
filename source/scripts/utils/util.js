@@ -17,6 +17,11 @@ var Util = (function () {
 		}
 	}
 
+	// returns a random color in hex format
+	function getRandomColor() {
+		return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+	}
+
 	function init() {
 		addStringFormat();
 		addEllipsize();
@@ -45,7 +50,8 @@ var Util = (function () {
 
 	return {
 		init: init,
-		toggleVisibility: toggleVisibility
+		toggleVisibility: toggleVisibility,
+		randomColor: getRandomColor
 	};
 
 })();

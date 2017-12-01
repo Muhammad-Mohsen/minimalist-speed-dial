@@ -1,3 +1,4 @@
+// taken entirely from https://codepen.io/wouwi/pen/Apvaq
 var FssProvider = (function () {
 
 	// Global Properties
@@ -7,7 +8,6 @@ var FssProvider = (function () {
 	var container;
 	var renderer, scene, mesh, geometry, material;
 	var canvasRenderer;
-	var gui, autopilotController;
 
 	// Mesh Properties
 	var MESH = {
@@ -19,8 +19,8 @@ var FssProvider = (function () {
 		xRange: 0.5,
 		yRange: 0.5,
 		zRange: 2.5,
-		ambient: '#555555',
-		diffuse: '#696969',
+		ambient: Util.randomColor(),
+		diffuse: Util.randomColor(),
 		speed: 0.0001
 	};
 
@@ -29,8 +29,8 @@ var FssProvider = (function () {
 		count: 2,
 		xyScalar: 1,
 		zOffset: 100,
-		ambient: '#111122',
-		diffuse: '#5555AA',
+		ambient: '#111122', // it's important to keep this at a low value so that we don't get color flooding
+		diffuse: Util.randomColor(),
 		speed: 0.0002,
 		gravity: 500,
 		dampening: 0.95,
@@ -52,8 +52,9 @@ var FssProvider = (function () {
 	var RENDER = {
 		renderer: 'canvas'
 	};
-
+	//
 	// Methods
+	//
 	function initialize(c) {
 
 		start = Date.now();

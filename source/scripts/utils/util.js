@@ -24,7 +24,7 @@ var Util = (function () {
 
 	function init() {
 		addStringFormat();
-		addEllipsize();
+		addEllipsis();
 	}
 
 	// adds String.format method. Thanks https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
@@ -40,11 +40,11 @@ var Util = (function () {
 	}
 
 	// adds String.ellipsize method
-	function addEllipsize() {
+	function addEllipsis() {
 		if (!String.ellipsize) {
 			String.ellipsize = function (string, maxLength) {
 				return string.length < maxLength ? string : string.substr(0, maxLength) + '...';
-			}
+			};
 		}
 	}
 
@@ -77,7 +77,7 @@ var Log = (function () {
 
 	return {
 		d: d
-	}
+	};
 
 })();
 //
@@ -91,11 +91,11 @@ var Validate = (function () {
 
 	// validates speed dial item URL
 	function isValidUrl(url) {
-		return /^(ftp|http|https):\/\/[^ "]+$/.test(url);;
+		return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
 	}
 
 	return {
 		name: isValidName,
 		url: isValidUrl
-	}
+	};
 })();

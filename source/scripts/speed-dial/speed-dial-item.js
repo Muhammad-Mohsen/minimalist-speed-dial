@@ -192,7 +192,7 @@ var SpeedDialItem = (function () {
 		if (isValid) {
 			element.removeClass('invalid');
 		} else {
-			element.addClass('invalid')
+			element.addClass('invalid');
 		}
 	}
 

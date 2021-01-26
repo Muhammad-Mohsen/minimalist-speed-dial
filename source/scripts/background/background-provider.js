@@ -3,6 +3,12 @@
 //
 var BackgroundProvider = (function () {
 
+	var List = {
+		FSS: FssProvider,
+		GRADIENT: GradientProvider,
+		SOLAR_SYSTEM: SolarSystemProvider
+	}
+
 	var provider;
 
 	// sets the desired provider
@@ -21,11 +27,12 @@ var BackgroundProvider = (function () {
 		var height = window.outerHeight;
 		var width = window.outerWidth;
 
-		container.height(height);
-		container.width(width);
+		container.style.height = height + 'px';
+		container.style.width = width + 'px';
 	}
 
 	return {
+		List: List,
 		setProvider: setProvider,
 		createBackground: createBackground
 	};

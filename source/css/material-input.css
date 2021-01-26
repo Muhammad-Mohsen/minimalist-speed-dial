@@ -1,4 +1,7 @@
 /* thanks: https://codepen.io/sevilayha/pen/IdGKH */
+.group {
+	position: relative;
+}
 .group input {
 	font-size: 14px;
 	color: #8a9098;
@@ -9,9 +12,6 @@
 	border-bottom: 1px solid #8a9098;
 	background-color: transparent;
 	transition: 0.2s ease all;
-}
-
-.group input:focus {
 	outline: none;
 }
 
@@ -33,7 +33,6 @@
 	font-size: 12px;
 	color: #fff;
 }
-
 /*
  * BOTTOM BARS
  */

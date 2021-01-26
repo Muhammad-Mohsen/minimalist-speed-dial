@@ -7,10 +7,8 @@ var Main = (function () {
 		Util.init();
 		SpeedDial.init();
 
-		var backgroundWrapper = $('#background-wrapper');
-
-		BackgroundProvider.setProvider(FssProvider);
-		BackgroundProvider.createBackground(backgroundWrapper);
+		BackgroundProvider.setProvider(BackgroundProvider.List.FSS);
+		BackgroundProvider.createBackground(document.querySelector('#background-wrapper'));
 	}
 
 	return {

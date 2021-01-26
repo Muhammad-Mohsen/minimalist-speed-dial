@@ -3,11 +3,8 @@ var SpeedDialStorage = (function () {
 
 	function get(callback) {
 		chrome.storage.local.get('list', function (result) {
-			if (result && result.list)
-				callback(result.list);
-
-			else
-				callback([]); // return an empty array
+			if (result && result.list) callback(result.list);
+			else callback([]); // return an empty array
 		});
 	}
 
@@ -25,9 +22,7 @@ var SpeedDialStorage = (function () {
 
 					setList(list); // Save list
 
-					if (callback)
-						callback(list[i].id);
-
+					if (callback) callback(list[i].id);
 					return;
 				}
 			}
@@ -38,8 +33,7 @@ var SpeedDialStorage = (function () {
 			list.push({ id: id, name: name, url: url }); // push the new item to the list
 			setList(list); // Save list
 
-			if (callback)
-				callback(id);
+			if (callback) callback(id);
 		});
 	}
 
@@ -50,9 +44,7 @@ var SpeedDialStorage = (function () {
 
 			setList(list); // Save list
 
-			if (callback)
-				callback();
-
+			if (callback) callback();
 			return;
 		});
 	}
@@ -74,8 +66,7 @@ var SpeedDialStorage = (function () {
 			// Save list to localstorage
 			setList(list);
 
-			if (callback)
-				callback();
+			if (callback) callback();
 		});
 	}
 

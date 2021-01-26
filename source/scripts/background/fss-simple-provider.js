@@ -9,7 +9,7 @@ var FssSimpleProvider = (function () {
 	var now, start;
 
 	function initialize(c) {
-		container = c.get(0);
+		container = c;
 		renderer = new FSS.CanvasRenderer();
 		scene = new FSS.Scene();
 		light = new FSS.Light('#111122', '#5555AA');// TODO randomize

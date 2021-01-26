@@ -1,37 +1,20 @@
 var SpeedDial = (function () {
 
-	var uiElements;
+	var ui;
 
 	function init() {
-		uiElements = {
-			body: $('body'),
-			speedDialWrapper: $('#speed-dial-wrapper'),
-			unorderedListSpeedDial: $('#speed-dial-list'),
-			buttonAddItem: $('#button-add-item'),
 
-			buttonApps: $('#button-apps')
+		SpeedDialForm.init();
+
+		ui = {
+			body: document.body,
+			wrapper: document.querySelector('#speed-dial-wrapper'),
+			dials: document.querySelector('#speed-dial-list'),
+			addButton: document.querySelector('#button-add-item')
 		};
 
-		registerBodyMouseEnterLeave();
-
-		uiElements.buttonApps.on('click', function () {
-			chrome.runtime.sendMessage({
-				action: 'apps'
-			});
-		});
-
-		uiElements.buttonAddItem.on('click', function () {
-			var dataItem = {
-				name: '',
-				url: ''
-			};
-
-			var item = SpeedDialItem.create(SpeedDialItem.MODE.EDIT, dataItem);
-			uiElements.unorderedListSpeedDial.append(item);
-
-			// it doesn't fucking work!! FUCK!!
-			// item.hide();
-			item.slideDown(250);
+		ui.addButton.addEventListener('click', () => {
+			SpeedDialForm.show(SpeedDialItem.emptyDataObject());
 		});
 
 		populateSpeedDialList();
@@ -40,19 +23,9 @@ var SpeedDial = (function () {
 	function populateSpeedDialList() {
 		SpeedDialStorage.getList(function (list) {
 			for (var i = 0; i < list.length; i++) {
-				var item = SpeedDialItem.create(SpeedDialItem.MODE.VIEW, list[i]);
-				uiElements.unorderedListSpeedDial.append(item);
+				var item = SpeedDialItem.create(list[i]);
+				ui.dials.insertAdjacentElement('beforeend', item);
 			}
-		});
-	}
-
-	function registerBodyMouseEnterLeave() {
-		uiElements.body.mouseenter(function () {
-			Util.toggleVisibility(true, uiElements.speedDialWrapper, uiElements.buttonApps);
-		});
-
-		uiElements.body.mouseleave(function () {
-			Util.toggleVisibility(false, uiElements.speedDialWrapper, uiElements.buttonApps);
 		});
 	}
 

@@ -4,21 +4,26 @@
  * red: #f01111
  * green: #6aef00
  * light grey #8a9098 / #a0a0a0
- * unfortunately, a lot of hard-coded margins, heights...
  */
 
 body {
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	font-family: arial;
-	color: #888;
-	/* hard-coded */
 	height: 100%;
 	width: 100%;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: #888;
 	font-size: 14px;
 	font-family: Calibri;
-	margin: 0;
 	overflow: hidden;
+}
+
+.row {
+	display: flex;
+}
+
+.expand {
+	flex-grow: 1;
 }
 
 .blur {
@@ -50,17 +55,6 @@ body {
 	margin-top: 10px;
 }
 
-.show {
-	opacity: 1;
-	transition: background-color 0.5s, opacity 0.5s;
-}
-
-.hide {
-	opacity: 0;
-	cursor: default;
-	transition: background-color 0.5s, opacity 0.5s;
-}
-
 .apps-button {
 	position: absolute !important;
 	right: 50px;
@@ -71,4 +65,49 @@ body {
 .apps-button img {
 	margin: 5px;
 	margin-bottom: 1px;
+}
+
+/* buttons */
+.alpha-button {
+	border: none;
+	cursor: pointer;
+	color: gray;
+	background-color: transparent;
+	outline: none; /* remove the button outline when focused */
+}
+
+.alpha-button:hover {
+	background-color: #80808066;
+	box-shadow: 0 0 0 2px gray;
+}
+
+.circle {
+	border-radius: 50%;
+	height: 36px;
+	width: 36px;
+	padding: 0;
+	padding-top: 3px; /* corrects the icon position */
+}
+
+.square {
+	border-radius: 3px;
+	padding: 10px;
+}
+
+li:hover,
+button:hover {
+	background-color: #eee;
+}
+
+li,
+button {
+	background-color: transparent;
+	transition: 0.3s;
+}
+
+.slide {
+	max-height: 0 !important;
+}
+.fade {
+	opacity: 0 !important;
 }

@@ -5,7 +5,6 @@
 		<title>New Tab</title>
 
 		<link href="../css/main.css" rel="stylesheet">
-		<link href="../css/grid.css" rel="stylesheet">
 		<link href="../css/material-input.css" rel="stylesheet">
 		<link href="../css/material-ripple.css" rel="stylesheet">
 		<link href="../css/speed-dial.css" rel="stylesheet">
@@ -15,36 +14,23 @@
 		<div id="background-wrapper"></div>
 
 		<!-- speed dial -->
-		<div id="speed-dial-wrapper" class="hide">
+		<div id="speed-dial-wrapper">
 			<!-- list items are added programmatically -->
-			<ul id="speed-dial-list" class="mat-list card"></ul>
+			<ul id="speed-dial-list" class="dial-list"></ul>
 
-			<br />
-			<!-- add item -->
-			<div class="row">
-				<div class="column column-12">
-					<button id="button-add-item" class="center-horizontal ripple circle alpha-button" title="Add Speed Dial Item">
-						<img src="../images/add-icon.png" width="18" />
-					</button>
-				</div>
-			</div>
+			<button id="button-add-item" class="center-horizontal circle alpha-button" title="Add Speed Dial Item">
+				<img src="../images/add-icon.png" width="18" />
+			</button>
 		</div>
 
-		<!-- apps button -->
-		<button id="button-apps" class="alpha-button square ripple apps-button hide">
-			<p class="column">Go to Apps</p>
-			<img src="../images/arrow-icon.png" width="18" class="button-icon" />
-		</button>
-
-		<script src="../lib/jquery-2.0.1.min.js"></script>
 		<script src="../lib/fss.min.js"></script>
-		<script src="../scripts/utils/const.js"></script>
 		<script src="../scripts/utils/util.js"></script>
 		<script src="../scripts/background/gradient-provider.js"></script>
 		<script src="../scripts/background/fss-provider.js"></script>
 		<script src="../scripts/background/solar-system-provider.js"></script>
 		<script src="../scripts/background/background-provider.js"></script>
 		<script src="../scripts/speed-dial/speed-dial-storage.js"></script>
+		<script src="../scripts/speed-dial/speed-dial-form.js"></script>
 		<script src="../scripts/speed-dial/speed-dial-item.js"></script>
 		<script src="../scripts/speed-dial/speed-dial.js"></script>
 		<script src="../scripts/main.js"></script>

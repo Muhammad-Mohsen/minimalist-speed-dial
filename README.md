@@ -1,7 +1,12 @@
 # Minimalist Speed Dial
 A simple Speed Dial Chrome extension. Nothing more to say really!
 
-## Special Thanks
+## TODO
+- Remove jQuery
+- Remove programmatic ellipsizing
+- Use template.js files instead of $.get(html_url)
+
+## Thanks
 
 - Matthew Wagerfield - [Flat Surface Shader](http://matthew.wagerfield.com/flat-surface-shader/)
 - Malik Dellidj - [CSS Solar System](https://codepen.io/kowlor/pen/ZYYQoy)

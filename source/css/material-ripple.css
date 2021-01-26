@@ -1,12 +1,5 @@
 /* Material style Ripple - http://www.cssscript.com/material-design-ripple-click-effect-pure-css/*/
 /* simply add the 'ripple'/'alpha-button' classes to the element */
-.alpha-button {
-	border: none;
-	cursor: pointer;
-	color: gray;
-	outline: none; /* remove the button outline when focused */
-}
-
 .ripple {
 	position: relative;
 	overflow: hidden;
@@ -34,31 +27,4 @@
 	transform: scale(0, 0);
 	opacity: .2;
 	transition: 0s;
-}
-
-
-/* button types */
-.circle {
-	border-radius: 50%;
-	height: 36px;
-	width: 36px;
-	padding: 0;
-	padding-top: 3px; /* corrects the icon position */
-}
-
-.square {
-	border-radius: 3px;
-	padding: 10px;
-}
-
-li:hover,
-button:hover {
-	background-color: #eee;
-	transition: background-color 0.5s, opacity 0.5s;
-}
-
-li,
-button {
-	background-color: transparent;
-	transition: background-color 0.5s, opacity 0.5s;
 }

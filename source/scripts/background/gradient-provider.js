@@ -1,5 +1,6 @@
 var GradientProvider = (function () {
 
+	// TODO
 	function createBackground(elem) {
 
 	}

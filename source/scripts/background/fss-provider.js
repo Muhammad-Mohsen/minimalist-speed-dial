@@ -60,7 +60,7 @@ var FssProvider = (function () {
 		start = Date.now();
 		center = FSS.Vector3.create();
 		attractor = FSS.Vector3.create();
-		container = c.get(0); // get the DOM element from the $ object
+		container = c;
 
 		createRenderer();
 		createScene();
@@ -247,7 +247,7 @@ var FssProvider = (function () {
 		container.addEventListener('mousemove', onMouseMove);
 	}
 
-	// Callbacks
+	// handlers
 	function onMouseMove(event) {
 		FSS.Vector3.set(attractor, event.x, renderer.height - event.y);
 		FSS.Vector3.subtract(attractor, center);

@@ -1,30 +1,40 @@
 // contains utility and extension functions
-//
 var Util = (function () {
-
-	// toggles the visibility of the given elements using the show/hide CSS classes and the disabled property
-	function toggleVisibility(endVisibility, elems) {
-		var classToAdd = endVisibility ? 'show' : 'hide';
-		var classToRemove = endVisibility ? 'hide' : 'show';
-
-		for (var i = 1; i < arguments.length; i++) {
-			var elem = arguments[i];
-
-			elem.addClass(classToAdd);
-			elem.removeClass(classToRemove);
-
-			elem.prop('disabled', !endVisibility);
-		}
-	}
 
 	// returns a random color in hex format
 	function getRandomColor() {
 		return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 	}
 
+	function slideOut(elem, duration, callback) {
+		hide(elem, 'slide', duration, callback);
+	}
+	function slideIn(elem, duration, callback) {
+		show(elem, 'slide', duration, callback);
+	}
+
+	function fadeOut(elem, duration, callback) {
+		hide(elem, 'fade', duration, callback);
+	}
+	function fadeIn(elem, duration, callback) {
+		show(elem, 'fade', duration, callback);
+	}
+
+	function hide(elem, cls, duration, callback) {
+		elem.classList.add(cls);
+		setTimeout(() => {
+			if (callback) callback();
+		}, duration);
+	}
+	function show(elem, cls, duration, callback) {
+		elem.classList.remove(cls);
+		setTimeout(() => {
+			if (callback) callback();
+		}, duration);
+	}
+
 	function init() {
 		addStringFormat();
-		addEllipsis();
 	}
 
 	// adds String.format method. Thanks https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
@@ -39,63 +49,59 @@ var Util = (function () {
 		}
 	}
 
-	// adds String.ellipsize method
-	function addEllipsis() {
-		if (!String.ellipsize) {
-			String.ellipsize = function (string, maxLength) {
-				return string.length < maxLength ? string : string.substr(0, maxLength) + '...';
-			};
-		}
-	}
-
 	return {
 		init: init,
-		toggleVisibility: toggleVisibility,
-		randomColor: getRandomColor
+
+		randomColor: getRandomColor,
+
+		slideOut: slideOut,
+		slideIn: slideIn,
+		fadeOut: fadeOut,
+		fadeIn: fadeIn
 	};
 
 })();
-//
-// responsible for logging
+
+var Const = {
+	MAX_URL_LENGTH: 40,
+	GOOGLE_FAVICON_API: 'http://www.google.com/s2/favicons?domain=',
+	DEBUG: true // enables/disables extension-wide logging
+};
+
 // use Const.DEBUG boolean to turn logging on/off
-//
 var Log = (function () {
 
-	function d(message) {
+	function debug(message) {
 		if (Const.DEBUG) {
-			if (arguments.length > 1)
-				console.log(now() + ' -- ' + message, arguments); // the arguments are ALL the arguments passed in to the log function!
-			else
-				console.log(now() + ' -- ' + message);
+			if (arguments.length > 1) console.log(now() + ' -- ' + message, arguments);
+			else console.log(now() + ' -- ' + message);
 		}
 	}
 
 	function now() {
-		var current = new Date();
-		return current.getFullYear() + '-' + current.getMonth() + '-' + current.getDay() + ' ' + current.getHours() + ':' + current.getMinutes() + ':' + current.getSeconds();
+		var n = new Date();
+		return n.getFullYear() + '.' + n.getMonth() + '.' + n.getDay() + ' ' + n.getHours() + ':' + n.getMinutes() + ':' + n.getSeconds();
 	}
 
 	return {
-		d: d
-	};
+		d: debug
+	}
 
 })();
-//
-// responsible for validation, sorry if the identifier wasn't clear!!
-//
+
 var Validate = (function () {
 	// validates speed dial item name
 	function isValidName(name) {
-		return name !== undefined && name.length > 0;
+		return name !== undefined && name.length > 2;
 	}
 
 	// validates speed dial item URL
 	function isValidUrl(url) {
-		return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+		return /^(ftp|http|https):\/\/[^ "]+$/.test(url);;
 	}
 
 	return {
 		name: isValidName,
 		url: isValidUrl
-	};
+	}
 })();

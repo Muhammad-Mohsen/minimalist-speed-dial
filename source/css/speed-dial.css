@@ -6,6 +6,7 @@
 	opacity: 0;
 	overflow-y: auto;
 	transition: 0.5s ease;
+	z-index: 1000;
 }
 body:hover #speed-dial-wrapper {
 	opacity: 1;

@@ -92,7 +92,7 @@ var Log = (function () {
 var Validate = (function () {
 	// validates speed dial item name
 	function isValidName(name) {
-		return name !== undefined && name.length > 2;
+		return name !== undefined && name.length > 0;
 	}
 
 	// validates speed dial item URL

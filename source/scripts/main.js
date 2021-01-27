@@ -7,7 +7,7 @@ var Main = (function () {
 		Util.init();
 		SpeedDial.init();
 
-		BackgroundProvider.setProvider(BackgroundProvider.List.FSS);
+		BackgroundProvider.setProvider(BackgroundProvider.List.SOLAR_SYSTEM);
 		BackgroundProvider.createBackground(document.querySelector('#background-wrapper'));
 	}
 

@@ -6,7 +6,10 @@ var BackgroundProvider = (function () {
 	var List = {
 		FSS: FssProvider,
 		GRADIENT: GradientProvider,
-		SOLAR_SYSTEM: SolarSystemProvider
+		SIMPLE_GRADIENT: SimpleGradientProvider,
+		DIAGONAL: DiagonalProvider,
+		SOLAR_SYSTEM: SolarSystemProvider,
+		UNSPLASH: UnsplashProvider
 	}
 
 	var provider;

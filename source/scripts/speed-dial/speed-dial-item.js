@@ -68,6 +68,46 @@ var SpeedDialItem = (function () {
 		}
 	}
 
+	function handleItemDragDrop(parentInput, dial) {
+		var dragHandle = dial.querySelector('.drag-handle');
+
+		dragHandle.addEventListener('dragstart', function (e) {
+			dial.classList.add('start');
+
+			e.dataTransfer.effectAllowed = 'move';
+			parentInput.dragSource = item;
+		});
+		dial.addEventListener('dragenter', function (e) {
+			dial.classList.add('over');
+		});
+		dial.addEventListener('dragover', function (e) {
+			e.preventDefault();
+			return false;
+		});
+		dial.addEventListener('dragleave', function (e) {
+			if (e.target != item) return;
+			item.classList.remove('over');
+		});
+		dragHandle.addEventListener('dragend', function (e) {
+			var dials = parentInput.children[0].children;
+			for (var i = 0; i < dials.length; i++) dials[i].classList.remove('over');
+
+			dial.classList.remove('start');
+		});
+
+		dials.addEventListener('drop', function (e) {
+			e.stopPropagation(); // stops the browser from redirecting.
+
+			if (parentInput.dragSource !== dial) {
+				// TODO
+				// updateItems(parentInput);
+			}
+
+			return false;
+		});
+
+	}
+
 	return {
 		create: create,
 		update, update,

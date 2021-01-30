@@ -129,8 +129,10 @@ code {
 	width: 70px;
 	margin-top: -35px;
 	margin-left: -35px;
-	-webkit-animation: orb 7.18673s linear infinite;
-					animation: orb 7.18673s linear infinite;
+	/* -webkit-animation: orb 7.18673s linear infinite;
+	animation: orb 7.18673s linear infinite; */
+	transform: rotate(190deg);
+	-webkit-transform: rotate(190deg);
 }
 .mercury:before {
 	height: 4px;
@@ -145,8 +147,10 @@ code {
 	width: 100px;
 	margin-top: -50px;
 	margin-left: -50px;
-	-webkit-animation: orb 18.45553s linear infinite;
-					animation: orb 18.45553s linear infinite;
+	/* -webkit-animation: orb 18.45553s linear infinite;
+	animation: orb 18.45553s linear infinite; */
+	transform: rotate(-34deg);
+	-webkit-transform: rotate(-34deg);
 }
 .venus:before {
 	height: 8px;
@@ -162,7 +166,7 @@ code {
 	margin-top: -72.5px;
 	margin-left: -72.5px;
 	-webkit-animation: orb 30s linear infinite;
-					animation: orb 30s linear infinite;
+	animation: orb 30s linear infinite;
 }
 .earth:before {
 	height: 6px;
@@ -183,7 +187,7 @@ code {
 	border-radius: 100px;
 	box-shadow: 0 -10px 0 -8px grey;
 	-webkit-animation: orb 2.24404s linear infinite;
-					animation: orb 2.24404s linear infinite;
+	animation: orb 2.24404s linear infinite;
 }
 
 .mars {
@@ -191,8 +195,10 @@ code {
 	width: 190px;
 	margin-top: -95px;
 	margin-left: -95px;
-	-webkit-animation: orb 56.42613s linear infinite;
-					animation: orb 56.42613s linear infinite;
+	/* -webkit-animation: orb 56.42613s linear infinite;
+	animation: orb 56.42613s linear infinite; */
+	transform: rotate(57deg);
+	-webkit-transform: rotate(57deg);
 }
 .mars:before {
 	height: 6px;
@@ -207,8 +213,10 @@ code {
 	width: 340px;
 	margin-top: -170px;
 	margin-left: -170px;
-	-webkit-animation: orb 355.72282s linear infinite;
-					animation: orb 355.72282s linear infinite;
+	/* -webkit-animation: orb 355.72282s linear infinite;
+	animation: orb 355.72282s linear infinite; */
+	transform: rotate(139deg);
+	-webkit-transform: rotate(139deg);
 }
 .jupiter:before {
 	height: 18px;
@@ -223,8 +231,10 @@ code {
 	width: 440px;
 	margin-top: -220px;
 	margin-left: -220px;
-	-webkit-animation: orb 882.69525s linear infinite;
-					animation: orb 882.69525s linear infinite;
+	/* -webkit-animation: orb 882.69525s linear infinite;
+	animation: orb 882.69525s linear infinite; */
+	transform: rotate(250deg);
+	-webkit-transform: rotate(250deg);
 }
 .saturn:before {
 	height: 12px;
@@ -241,17 +251,17 @@ code {
 	left: 50%;
 	top: 0px;
 	-webkit-transform: rotateZ(-52deg);
-					transform: rotateZ(-52deg);
+	transform: rotateZ(-52deg);
 	margin-left: -2.3%;
 	margin-top: -1.2%;
 	border-radius: 50% 50% 50% 50%;
 	box-shadow: 0 1px 0 1px #987641, 3px 1px 0 #987641, -3px 1px 0 #987641;
-	-webkit-animation: orb 882.69525s linear infinite;
-					animation: orb 882.69525s linear infinite;
+	/* -webkit-animation: orb 882.69525s linear infinite;
+	animation: orb 882.69525s linear infinite;
 	-webkit-animation-direction: reverse;
-					animation-direction: reverse;
+	animation-direction: reverse; */
 	-webkit-transform-origin: 52% 60%;
-					transform-origin: 52% 60%;
+	transform-origin: 52% 60%;
 }
 
 .uranus {
@@ -259,8 +269,10 @@ code {
 	width: 520px;
 	margin-top: -260px;
 	margin-left: -260px;
-	-webkit-animation: orb 2512.4002s linear infinite;
-					animation: orb 2512.4002s linear infinite;
+	/* -webkit-animation: orb 2512.4002s linear infinite;
+	animation: orb 2512.4002s linear infinite; */
+	transform: rotate(280deg);
+	-webkit-transform: rotate(280deg);
 }
 .uranus:before {
 	height: 10px;
@@ -275,8 +287,10 @@ code {
 	width: 630px;
 	margin-top: -315px;
 	margin-left: -315px;
-	-webkit-animation: orb 4911.78386s linear infinite;
-					animation: orb 4911.78386s linear infinite;
+	/* -webkit-animation: orb 4911.78386s linear infinite;
+	animation: orb 4911.78386s linear infinite; */
+	transform: rotate(23deg);
+	-webkit-transform: rotate(23deg);
 }
 .neptune:before {
 	height: 10px;
@@ -293,8 +307,8 @@ code {
 	width: 300px;
 	margin-top: -150px;
 	margin-left: -150px;
-	-webkit-animation: orb 179.95583s linear infinite;
-					animation: orb 179.95583s linear infinite;
+	/* -webkit-animation: orb 179.95583s linear infinite;
+	animation: orb 179.95583s linear infinite; */
 	overflow: hidden;
 }
 .asteroids-belt:before {
@@ -313,8 +327,10 @@ code {
 	width: 780px;
 	margin-top: -450px;
 	margin-left: -320px;
-	-webkit-animation: orb 7439.70741s linear infinite;
-					animation: orb 7439.70741s linear infinite;
+	/* -webkit-animation: orb 7439.70741s linear infinite;
+	animation: orb 7439.70741s linear infinite; */
+	transform: rotate(80deg);
+	-webkit-transform: rotate(80deg);
 }
 .pluto:before {
 	height: 3px;
@@ -336,21 +352,21 @@ code {
 @-webkit-keyframes orb {
 	from {
 		-webkit-transform: rotate(0deg);
-						transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
 	to {
 		-webkit-transform: rotate(-360deg);
-						transform: rotate(-360deg);
+		transform: rotate(-360deg);
 	}
 }
 
 @keyframes orb {
 	from {
 		-webkit-transform: rotate(0deg);
-						transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
 	to {
 		-webkit-transform: rotate(-360deg);
-						transform: rotate(-360deg);
+		transform: rotate(-360deg);
 	}
 }

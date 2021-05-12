@@ -1,6 +1,6 @@
 var UnsplashProvider = (function () {
 
-	var URL = 'https://api.unsplash.com/photos/random/?client_id=NafZbHz1KQb3-1huWeoaHwkszS2ki31p1qD69a22Lzw&orientation=landscape&query=dark';
+	var URL = 'https://api.unsplash.com/photos/random/?client_id=NafZbHz1KQb3-1huWeoaHwkszS2ki31p1qD69a22Lzw&orientation=landscape';
 	var KEY = 'NafZbHz1KQb3-1huWeoaHwkszS2ki31p1qD69a22Lzw';
 
 	var htmlTemplate = `
@@ -18,7 +18,7 @@ var UnsplashProvider = (function () {
 			.unsplash-background {
 				height: 100vh;
 				width: 100vw;
-				background: #333 url("{0}") no-repeat center;
+				background: #111 url("{0}") no-repeat center;
 				background-size: cover;
 			}
 			.unsplash-attribution {
@@ -59,7 +59,7 @@ var UnsplashProvider = (function () {
 
 	function getCachedBackground(callback) {
 		chrome.storage.local.get('unsplash', function (cache) {
-			if (cache && cache.unsplash && new Date().getTime() - cache.unsplash.date < 24 * 60 * 60 * 1000) {
+			if (cache && cache.unsplash && new Date().getTime() - cache.unsplash.date < 3 * 60 * 60 * 1000) {
 				callback(cache.unsplash.data);
 				return;
 			}

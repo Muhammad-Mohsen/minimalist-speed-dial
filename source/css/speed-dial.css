@@ -39,6 +39,10 @@ body:hover #speed-dial-wrapper {
 	text-decoration: none;
 	transition: 0.3s ease;
 }
+.dial-item.over {
+	/* background-color: rgba(128, 128, 128, .4); */
+	box-shadow: 0 0 0 2px grey inset;
+}
 
 .dial-item .favicon {
 	margin: auto 16px;
